@@ -1,0 +1,32 @@
+---
+---
+<aside class="caveats">
+  <div class="label">Caveats &amp; what's still open</div>
+  <div class="body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .caveats {
+    margin: 3rem 0 1rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--color-primary-light);
+    border-radius: 4px;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  .body {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-primary);
+  }
+  .body :global(p) { margin: 0; }
+  .body :global(p + p) { margin-top: 0.75rem; }
+</style>

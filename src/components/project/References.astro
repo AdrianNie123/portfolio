@@ -1,0 +1,50 @@
+---
+import type { ProjectReference } from '@/types';
+
+interface Props {
+  items: ProjectReference[];
+}
+const { items } = Astro.props;
+---
+<div class="references">
+  <div class="label">References</div>
+  <ol>
+    {items.map((ref) => (
+      <li>
+        {ref.url ? <a href={ref.url} target="_blank" rel="noopener">{ref.citation}</a> : ref.citation}
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .references { margin-bottom: 2rem; }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  ol { list-style: none; padding: 0; margin: 0; counter-reset: ref; }
+  li {
+    counter-increment: ref;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.65rem;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+  li::before {
+    content: '[' counter(ref) ']';
+    position: absolute;
+    left: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+  }
+  li a { color: inherit; text-decoration: underline; text-decoration-color: var(--color-border); }
+  li a:hover { text-decoration-color: var(--color-primary); }
+</style>

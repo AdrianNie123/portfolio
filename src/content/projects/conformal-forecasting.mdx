@@ -1,0 +1,38 @@
+---
+---
+
+import PullQuote from '@/components/project/PullQuote.astro';
+import MethodList from '@/components/project/MethodList.astro';
+import Chart from '@/components/project/Chart.astro';
+import Caveats from '@/components/project/Caveats.astro';
+
+<PullQuote>
+Gaussian prediction intervals undercover by 15–20 percentage points during recessions. I built a distribution-free alternative using conformal prediction and showed it holds — empirically, across four FRED series and three macroeconomic regimes.
+</PullQuote>
+
+<MethodList>
+
+- Implemented rolling split-conformal calibration from scratch (no MAPIE), with the finite-sample quantile correction from Angelopoulos & Bates (2023) — guarantees ≥90% coverage without normality assumptions
+- Benchmarked ARIMA and ETS with both Gaussian and conformal intervals across 4 FRED series (CPI, unemployment, GDP growth, WTI crude) using honest expanding-window evaluation with no future leakage
+- Built regime-sliced evaluation (NBER recession, high volatility, expansion) to isolate exactly when and why Gaussian intervals fail
+- Interactive Streamlit dashboard with forecast ribbon overlays, rolling coverage subplots, and miss scatter markers — designed to make the coverage story visible at a glance
+
+</MethodList>
+
+<Chart
+  src="/images/projects/conformal-forecasting/ribbon-rolling.png"
+  caption="Forecast ribbon with conformal bands (blue) and Gaussian bounds (dashed red) — misses cluster in recession periods"
+/>
+
+<Chart
+  src="/images/projects/conformal-forecasting/empirical-coverage.png"
+  caption="Empirical coverage by method — conformal holds near 90%, Gaussian undercovers across all four series"
+/>
+
+## Methodology
+
+Conformal prediction constructs prediction intervals that achieve valid marginal coverage without distributional assumptions. The guarantee from Angelopoulos & Bates (2023) states that P(Y_(n+1) ∈ Ĉ_α(X_(n+1))) ≥ 1−α for any exchangeable sequence — including time series under rolling calibration — regardless of whether forecast errors are Gaussian, fat-tailed, or regime-switching. Intervals are wider than a well-specified parametric model, but a well-specified parametric model is rarely the reality.
+
+Each series is split chronologically into three non-overlapping periods. Training uses at minimum 60% of available observations. Calibration uses the next 20%. The remaining observations form the test set. During calibration, the model is refit at each step on all data up to that point, and the one-step-ahead absolute residual is recorded.
+
+The conformal quantile q̂ is computed as the ⌈(1−α)(1+1/n_cal)⌉-th empirical quantile of those calibration residuals — the finite-sample correction from Proposition 1 of Angelopoulos & Bates (2023). Prediction intervals for the test period are symmetric: ŷ_t ± q̂. The quantile is recalibrated every 12 steps as the test period advances, folding recent observations back into the calibration window to mimic real deployment.

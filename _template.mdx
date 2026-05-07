@@ -1,0 +1,46 @@
+---
+slug: "REPLACE-ME"
+title: "Replace With Project Title"
+tag: "ECONOMETRICS"
+year: "2026"
+status: "complete"
+palette: "paper"
+stack: ["Python", "statsmodels", "Plotly"]
+references:
+  - "Author (Year), Paper Title, Journal/Source"
+  - "Dataset name, source URL or citation"
+---
+
+import { PullQuote, MethodList, Chart, StackChips, References, Caveats } from '@/components/project'
+
+<PullQuote>
+State the problem in one sentence. Describe the method in one or two sentences,
+naming the specific technique. Report the headline result with a number.
+</PullQuote>
+
+<MethodList>
+- First methodological move. Cite the specific technique, dataset, or paper. Include a number where possible.
+- Second move. What did you build, fit, estimate, or test?
+- Third move. How did you validate? Holdout, replication target, regime split?
+- Fourth move. What's the deliverable — dashboard, report, model artifact?
+</MethodList>
+
+<Chart
+  src="charts/headline-result.svg"
+  caption="What the reader should look at — not a description of the chart type."
+/>
+
+<Chart
+  src="charts/secondary-finding.svg"
+  caption="Second chart caption. Point to the specific feature that matters."
+/>
+
+<StackChips items={frontmatter.stack} />
+
+<References items={frontmatter.references} />
+
+<Caveats>
+Optional. One paragraph on what didn't work, what's still wrong, or what the
+project doesn't claim. This builds more credibility than another bullet of
+accomplishments.
+</Caveats>

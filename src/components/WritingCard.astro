@@ -1,0 +1,50 @@
+---
+export interface Props {
+  title: string;
+  type: string;
+  previewImage: string;
+  excerpt: string;
+  onClick?: string;
+}
+
+const { title, type, previewImage, excerpt } = Astro.props;
+---
+
+<div
+  class="group relative aspect-square rounded-lg overflow-hidden cursor-pointer bg-dark"
+  data-writing-card
+  data-title={title}
+  data-type={type}
+  data-image={previewImage}
+  data-excerpt={excerpt}
+>
+  {/* Background Image */}
+  <img
+    src={previewImage}
+    alt={title}
+    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    loading="lazy"
+  />
+
+  {/* Overlay */}
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+
+  {/* Type tag */}
+  <span class="absolute top-3 right-3 text-[10px] font-semibold tracking-wider uppercase text-white bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full">
+    {type}
+  </span>
+
+  {/* Title */}
+  <div class="absolute bottom-0 left-0 right-0 p-4">
+    <h3 class="font-serif text-base font-semibold text-white leading-snug">
+      {title}
+    </h3>
+  </div>
+
+  {/* Hover "Read" indicator */}
+  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <span class="text-white text-sm font-medium tracking-wider flex items-center gap-1">
+      Read <span class="text-lg">&rarr;</span>
+    </span>
+  </div>
+</div>

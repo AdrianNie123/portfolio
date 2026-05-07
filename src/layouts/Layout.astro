@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Adrian Nie | Data Science · ML · Visualization · Writing',
+  description = 'Portfolio of Adrian Nie — UC Berkeley Economics graduate exploring data science, machine learning, causal inference, and creative writing.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Adrian Nie | Data Science & Creative Writing" />
+    <meta property="og:description" content="Building in public at the intersection of data and storytelling." />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Adrian Nie | Data Science & Creative Writing" />
+    <meta name="twitter:description" content="Building in public at the intersection of data and storytelling." />
+
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
+  </head>
+  <body class="bg-bg text-text-primary antialiased">
+    <a
+      href="#home"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded"
+    >
+      Skip to content
+    </a>
+
+    <slot />
+  </body>
+</html>

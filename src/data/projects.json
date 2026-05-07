@@ -1,0 +1,85 @@
+[
+  {
+    "id": "conformal-forecasting",
+    "slug": "conformal-forecasting",
+    "title": "Conformal Prediction for Macroeconomic Forecasting",
+    "category": "Econometrics",
+    "description": "Distribution-free prediction intervals across four FRED series and three macroeconomic regimes.",
+    "techStack": ["Python", "Statsmodels", "Streamlit", "Plotly", "FRED API", "NBER Data"],
+    "image": "/images/projects/conformal-forecasting/ribbon-rolling.png",
+    "link": "https://github.com/yourusername/conformal-forecasting",
+    "featured": true,
+    "hasWriteup": true,
+    "palette": "deep-navy",
+    "year": "2025",
+    "references": [
+      {
+        "citation": "Angelopoulos, A. N., & Bates, S. (2023). Conformal Prediction: A Gentle Introduction. Foundations and Trends in Machine Learning, 16(4), 494–591.",
+        "url": "https://arxiv.org/abs/2107.07511"
+      },
+      {
+        "citation": "Cordier, T., et al. (2023). MAPIE: an open-source library for distribution-free uncertainty quantification. arXiv:2207.12274.",
+        "url": "https://arxiv.org/abs/2207.12274"
+      },
+      {
+        "citation": "Federal Reserve Bank of St. Louis. FRED Economic Data.",
+        "url": "https://fred.stlouisfed.org"
+      },
+      {
+        "citation": "National Bureau of Economic Research. US Business Cycle Expansions and Contractions.",
+        "url": "https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions"
+      }
+    ]
+  },
+  {
+    "id": "neon-econometrics",
+    "slug": "neon-econometrics",
+    "title": "Neon Econometrics Showcase",
+    "category": "Visualization",
+    "description": "A stylized econometric analysis project leveraging AI-assisted tooling for compelling data storytelling and neon aesthetics.",
+    "techStack": ["Python", "Matplotlib", "Seaborn", "Claude"],
+    "image": "/images/projects/neon-econometrics.jpg",
+    "link": "https://github.com/yourusername/neon-econometrics",
+    "featured": false,
+    "hasWriteup": false,
+    "draft": true
+  },
+  {
+    "id": "data-observatory",
+    "slug": "data-observatory",
+    "title": "The Data Observatory",
+    "category": "Visualization",
+    "description": "An experimental portfolio concept built around the metaphor of an observatory — watching data like fungi watch the forest.",
+    "techStack": ["D3.js", "React", "Astro", "Tailwind"],
+    "image": "/images/projects/data-observatory.jpg",
+    "link": "https://github.com/yourusername/data-observatory",
+    "featured": false,
+    "hasWriteup": false,
+    "draft": true
+  },
+  {
+    "id": "ca-utilities-rate-case",
+    "slug": "ca-utilities-rate-case",
+    "title": "California Utilities Rate Case Replication",
+    "category": "Regulatory",
+    "description": "Reconstructed CPUC's authorized revenue requirement within 3% across PG&E, SCE, and SDG&E using public FERC and EIA filings.",
+    "techStack": ["Python", "pandas", "statsmodels", "FERC Form 1", "EIA-861"],
+    "image": "/images/projects/ca-utilities-rate-case/revenue-requirement-vs-cpuc.png",
+    "featured": true,
+    "hasWriteup": true,
+    "palette": "paper",
+    "year": "2025"
+  },
+  {
+    "id": "ai-content-workflow",
+    "slug": "ai-content-workflow",
+    "title": "AI Content Workflow Tools",
+    "category": "ML",
+    "description": "Automated pipelines for faceless content creation — from prompt engineering to cinematic poetry video generation.",
+    "techStack": ["Python", "OpenAI API", "FFmpeg", "Telegram Bot"],
+    "image": "/images/projects/ai-content.jpg",
+    "link": "https://github.com/yourusername/ai-content-workflow",
+    "featured": false,
+    "hasWriteup": false
+  }
+]

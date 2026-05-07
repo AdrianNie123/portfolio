@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/Nav';
+import WritingGrid from '@/components/writing/WritingGrid';
+import { loadAllWriting } from '@/lib/writing';
+
+const entries = loadAllWriting();
+---
+
+<Layout title="Writing — Adrian Nie">
+  <Nav client:load />
+  <main class="min-h-screen bg-bg pt-24 pb-20 px-6">
+    <div class="max-w-5xl mx-auto">
+
+      <header class="mb-14 pb-10">
+        <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted mb-4">
+          Writing · Poetry &amp; Prose
+        </p>
+        <h1 class="font-serif text-5xl md:text-6xl font-medium text-text-primary mb-5 leading-[1.05] tracking-[-0.02em]">
+          A second study.
+        </h1>
+        <p class="text-text-secondary leading-relaxed max-w-xl">
+          Short-form poems and the occasional essay. Updated when something is finished — no posting calendar.
+        </p>
+      </header>
+
+      <WritingGrid entries={entries} client:load />
+
+    </div>
+  </main>
+</Layout>

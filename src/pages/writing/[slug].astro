@@ -1,0 +1,94 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Nav from '@/components/Nav';
+import writingData from '@/data/writing.json';
+import type { Writing } from '@/types';
+
+export async function getStaticPaths() {
+  const writings = writingData as Writing[];
+  const mdxEntries = await getCollection('writing');
+
+  return writings.map((meta) => {
+    const mdxEntry = meta.hasFullPage
+      ? (mdxEntries.find((e) => e.id.replace(/\.[^.]+$/, '') === meta.slug) ?? null)
+      : null;
+
+    if (meta.hasFullPage && !mdxEntry) {
+      throw new Error(
+        `Writing entry "${meta.slug}" has hasFullPage: true but no MDX file found at src/content/writing/${meta.slug}.mdx`
+      );
+    }
+
+    return { params: { slug: meta.slug }, props: { meta, mdxEntry } };
+  });
+}
+
+interface Props {
+  meta: Writing;
+  mdxEntry: CollectionEntry<'writing'> | null;
+}
+
+const { meta, mdxEntry } = Astro.props;
+const Content = mdxEntry ? (await mdxEntry.render()).Content : null;
+
+const isEssay = meta.type === 'Essay';
+
+function formatReadingDate(iso: string): string {
+  const [year, month, day] = iso.split('-');
+  return new Date(Number(year), Number(month) - 1, Number(day)).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+const overline = isEssay
+  ? meta.readingTime
+    ? `ESSAY · ${meta.readingTime} MIN`
+    : 'ESSAY'
+  : `${meta.type.toUpperCase()} · ${formatReadingDate(meta.date)}`;
+
+// Palette-dependent class strings — avoids deeply-nested ternary in the template.
+const wrapClass    = isEssay ? 'min-h-screen bg-primary'                                           : 'min-h-screen bg-bg';
+const articleClass = isEssay ? 'max-w-3xl mx-auto px-6 pt-24 pb-20'                               : 'max-w-2xl mx-auto px-6 pt-24 pb-20';
+const backClass    = isEssay ? 'font-mono text-[11px] tracking-[0.08em] text-bg/60 hover:text-bg transition-colors duration-150'
+                             : 'font-mono text-[11px] tracking-[0.08em] text-text-muted hover:text-primary transition-colors duration-150';
+const borderClass  = isEssay ? 'border-bg/20'                                                       : 'border-border';
+const overlineClass = isEssay ? 'font-mono text-[10px] uppercase tracking-[0.12em] text-bg/50 mb-4'
+                              : 'font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted mb-4';
+const titleClass   = isEssay ? 'font-serif text-5xl md:text-6xl font-medium text-bg leading-[1.05] tracking-[-0.02em]'
+                             : 'font-serif text-5xl md:text-6xl font-medium text-text-primary leading-[1.05] tracking-[-0.02em]';
+const bodyClass    = isEssay ? 'font-serif text-xl text-bg/80 leading-[1.8]'
+                             : 'font-serif text-xl text-text-primary leading-[1.8]';
+---
+
+<Layout title={`${meta.title} — Adrian Nie`}>
+  <Nav client:load />
+  <div class={wrapClass}>
+    <article class={articleClass}>
+
+      <a href="/writing" class={`inline-block mb-10 ${backClass}`}>
+        ← All writing
+      </a>
+
+      <header class={`mb-12 pb-8 border-b ${borderClass}`}>
+        <p class={overlineClass}>{overline}</p>
+        <h1 class={titleClass}>{meta.title}</h1>
+      </header>
+
+      <div class={bodyClass}>
+        {Content ? (
+          <Content />
+        ) : (
+          <div class="whitespace-pre-wrap">{meta.body}</div>
+        )}
+      </div>
+
+      <footer class={`mt-16 pt-6 border-t ${borderClass}`}>
+        <a href="/writing" class={backClass}>← All writing</a>
+      </footer>
+
+    </article>
+  </div>
+</Layout>

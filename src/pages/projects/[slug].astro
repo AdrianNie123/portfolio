@@ -1,0 +1,125 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import StackChips from '@/components/project/StackChips.astro';
+import References from '@/components/project/References.astro';
+import projectsData from '@/data/projects.json';
+import type { Project } from '@/types';
+
+export async function getStaticPaths() {
+  const mdxEntries = await getCollection('projects');
+  const projects = projectsData as Project[];
+
+  // entry.id includes the file extension in @astrojs/mdx v4 (e.g. "conformal-forecasting.mdx").
+  // Strip the extension to get the slug.
+  return mdxEntries.map((entry) => {
+    const slug = entry.id.replace(/\.[^.]+$/, '');
+    const meta = projects.find((p) => p.slug === slug);
+    if (!meta) {
+      throw new Error(
+        `MDX writeup exists for slug "${slug}" but no matching entry in projects.json`
+      );
+    }
+    if (!meta.hasWriteup) {
+      throw new Error(
+        `MDX writeup exists for slug "${slug}" but JSON has hasWriteup: false`
+      );
+    }
+    return { params: { slug }, props: { entry, meta } };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  meta: Project;
+}
+
+const { entry, meta } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`${meta.title} — Adrian Nie`}>
+  <article class="project-page">
+    <header class="project-header">
+      <a href="/#projects" class="back-link">← Back to projects</a>
+      <div class="tag-pill">{meta.category}{meta.year ? ` · ${meta.year}` : ''}</div>
+      <h1>{meta.title}</h1>
+    </header>
+
+    <div class="project-body">
+      <Content />
+    </div>
+
+    <footer class="project-footer">
+      <StackChips items={meta.techStack} />
+      {meta.references && meta.references.length > 0 && (
+        <References items={meta.references} />
+      )}
+      {meta.link && (
+        <div class="external-links">
+          <a href={meta.link} target="_blank" rel="noopener" class="ext-link">
+            View repo →
+          </a>
+        </div>
+      )}
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .project-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+  .project-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: var(--color-primary); }
+  .tag-pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-primary-dark);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+  .project-footer {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .external-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .ext-link {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .ext-link:hover { text-decoration: underline; }
+</style>

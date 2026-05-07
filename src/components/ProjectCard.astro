@@ -1,0 +1,54 @@
+---
+export interface Props {
+  title: string;
+  category: string;
+  description: string;
+  techStack: string[];
+  image: string;
+  link: string;
+}
+
+const { title, category, description, techStack, image, link } = Astro.props;
+---
+
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block bg-surface rounded-lg overflow-hidden border border-border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+>
+  {/* Image */}
+  <div class="aspect-[16/10] overflow-hidden bg-primary-light">
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+      loading="lazy"
+    />
+  </div>
+
+  {/* Content */}
+  <div class="p-5">
+    {/* Category tag */}
+    <span class="inline-block text-[11px] font-semibold tracking-wider uppercase text-primary bg-primary-light px-2.5 py-1 rounded-full mb-3">
+      {category}
+    </span>
+
+    <h3 class="font-serif text-lg font-semibold text-text-primary mb-2 group-hover:text-primary transition-colors">
+      {title}
+    </h3>
+
+    <p class="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-3">
+      {description}
+    </p>
+
+    {/* Tech stack */}
+    <div class="flex flex-wrap gap-1.5">
+      {techStack.map((tech) => (
+        <span class="text-[11px] text-text-muted bg-bg px-2 py-0.5 rounded">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+</a>

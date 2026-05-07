@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav';
+import SectionWrapper from '../components/SectionWrapper.astro';
+import ProjectGrid from '../components/ProjectGrid';
+import projectsData from '../data/projects.json';
+import type { Project } from '../types';
+const projects = projectsData as Project[];
+const visibleProjectCount = projects.filter((p) => !p.draft).length;
+---
+
+<Layout>
+  <Nav client:load />
+
+  <!-- COMBINED HERO / INTRO — Belicia Format -->
+  <section id="home" class="portfolio-section min-h-screen bg-bg pt-24 pb-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-start">
+
+        <!-- LEFT: Monogram + Identity -->
+        <div class="md:col-span-4 flex flex-col items-center md:items-start">
+          <div class="w-64 h-64 md:w-72 md:h-72 rounded-xl overflow-hidden bg-primary-light flex items-center justify-center relative">
+            <!-- Monogram placeholder — replace with real headshot when ready -->
+            <span class="font-serif text-[140px] md:text-[160px] font-medium text-primary leading-none tracking-[-0.04em] select-none">
+              AN
+            </span>
+            <!-- When a headshot is ready at /images/headshot.jpg, add:
+            <img
+              src="/images/headshot.jpg"
+              alt="Adrian Nie"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            -->
+          </div>
+          <div class="mt-6 text-center md:text-left">
+            <p class="font-mono text-xs text-text-muted uppercase tracking-[0.12em] mb-2">
+              Adrian Nie
+            </p>
+            <p class="text-text-secondary text-sm leading-relaxed">
+              Economics &amp; Data Science<br/>
+              University of California, Berkeley
+            </p>
+          </div>
+          <div class="mt-4 flex gap-3 justify-center md:justify-start">
+            <a
+              href="https://www.linkedin.com/in/adriannie21"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="text-text-muted hover:text-primary transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a
+              href="https://github.com/AdrianNie123"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              class="text-text-muted hover:text-primary transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Substantive bio -->
+        <div class="md:col-span-8">
+          <p class="font-mono text-xs text-text-muted uppercase tracking-[0.12em] mb-6">
+            Adrian Nie · 2026
+          </p>
+          <h2 class="font-serif text-5xl md:text-6xl font-medium text-text-primary mb-6 leading-[1.05] tracking-[-0.02em]">
+            Econometrics, machine learning, and the boring work that makes findings hold up.
+          </h2>
+          <div class="space-y-4 text-base text-text-secondary leading-relaxed mb-10">
+            <p>
+              I build quantitative systems on economic and regulatory data — rate cases, macroeconomic forecasts, causal inference on transaction data. I care about methods that survive contact with the real world: honest evaluation, distribution-free guarantees, and findings that hold across regimes.
+            </p>
+            <p>
+              Currently a Financial &amp; Operations Analyst in San Francisco. UC Berkeley, B.A. Economics &amp; Data Science.
+            </p>
+          </div>
+
+          <!-- Working on / Methods — above the rule -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+            <div>
+              <p class="font-mono text-xs text-text-muted uppercase tracking-[0.12em] mb-3">Working on</p>
+              <p class="text-sm text-text-secondary leading-relaxed">
+                Conformal prediction for macro forecasting · Distribution-aware rate design · Causal inference under selection
+              </p>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-text-muted uppercase tracking-[0.12em] mb-3">Methods</p>
+              <p class="text-sm text-text-secondary leading-relaxed">
+                Quantile regression · Conformal calibration · Meta-learners (S/T/X) · Panel OLS and IV · Bayesian forecasting
+              </p>
+            </div>
+          </div>
+
+          <!-- Inline mono links below the rule -->
+          <div class="border-t border-border pt-6">
+            <div class="flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.08em]">
+              <a href="/resume.pdf" target="_blank" class="text-primary hover:text-primary-dark transition-colors">Resume →</a>
+              <a href="https://github.com/AdrianNie123" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-dark transition-colors">GitHub →</a>
+              <a href="https://www.linkedin.com/in/adriannie21" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-dark transition-colors">LinkedIn →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <SectionWrapper id="projects">
+    <header class="mb-14">
+      <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted mb-4">
+        Technical Studies · Machine Learning &amp; Data Analytics
+      </p>
+      <h2 class="font-serif text-4xl md:text-5xl font-medium text-text-primary mb-5 tracking-[-0.015em]">
+        Technical Studies.
+      </h2>
+      <p class="text-text-secondary leading-relaxed max-w-xl">
+        Projects in causal inference, forecasting, and applied machine learning. I'm most interested in the methodology underneath — why an estimator is consistent, when a model's assumptions actually hold, what makes an evaluation honest enough to act on.
+      </p>
+    </header>
+    <ProjectGrid projects={projects} client:load />
+  </SectionWrapper>
+
+</Layout>
+
+<script>
+  const SECTIONS = ['home', 'projects'];
+  let current = 'home';
+
+  function navigate(id: string) {
+    if (!SECTIONS.includes(id) || id === current) return;
+    document.getElementById(current)?.classList.remove('is-active');
+    document.getElementById(id)?.classList.add('is-active');
+    current = id;
+    window.dispatchEvent(new CustomEvent('sectionChange', { detail: id }));
+  }
+
+  // Runs on initial load AND every View Transitions navigation.
+  // Without this, the module script only fires once and sections stay hidden
+  // when the page is swapped in via client-side navigation.
+  document.addEventListener('astro:page-load', () => {
+    current = 'home';
+    const initialId = window.location.hash.replace('#', '');
+    if (SECTIONS.includes(initialId)) {
+      document.getElementById(initialId)?.classList.add('is-active');
+      current = initialId;
+    } else {
+      document.getElementById('home')?.classList.add('is-active');
+    }
+  });
+
+  window.addEventListener('navigateTo', (e) => {
+    navigate((e as CustomEvent<string>).detail);
+  });
+</script>

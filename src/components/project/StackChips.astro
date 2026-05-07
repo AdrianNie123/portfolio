@@ -1,0 +1,33 @@
+---
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+---
+<div class="stack-chips">
+  <div class="label">Stack</div>
+  <ul>
+    {items.slice(0, 6).map((item) => <li>{item}</li>)}
+  </ul>
+</div>
+
+<style>
+  .stack-chips { margin-bottom: 2rem; }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  li {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 0.35rem 0.75rem;
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-radius: 4px;
+  }
+</style>
