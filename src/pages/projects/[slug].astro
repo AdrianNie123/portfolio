@@ -44,6 +44,7 @@ const { Content } = await entry.render();
       <a href="/#projects" class="back-link">← Back to projects</a>
       <div class="tag-pill">{meta.category}{meta.year ? ` · ${meta.year}` : ''}</div>
       <h1>{meta.title}</h1>
+      <StackChips items={meta.techStack} />
     </header>
 
     <div class="project-body">
@@ -51,7 +52,6 @@ const { Content } = await entry.render();
     </div>
 
     <footer class="project-footer">
-      <StackChips items={meta.techStack} />
       {meta.references && meta.references.length > 0 && (
         <References items={meta.references} />
       )}
@@ -102,7 +102,7 @@ const { Content } = await entry.render();
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--color-text-primary);
-    margin: 0;
+    margin: 0 0 1.5rem;
   }
   .project-footer {
     margin-top: 4rem;
