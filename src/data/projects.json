@@ -32,6 +32,37 @@
     ]
   },
   {
+    "id": "ca-utilities-rate-case",
+    "slug": "ca-utilities-rate-case",
+    "title": "California IOU General Rate Case Analysis",
+    "category": "Regulatory",
+    "description": "Reconstructed CPUC staff's Phase 1 GRC baseline methodology for PG&E, SCE, and SDG&E — identifying PG&E's O&M at 46% above the California IOU peer average using public FERC Form 1 and EIA-861 data.",
+    "techStack": ["Python", "pandas", "statsmodels", "FERC Form 1", "EIA-861"],
+    "image": "/images/projects/ca-utilities-rate-case/rr_waterfall_pge.png",
+    "featured": true,
+    "hasWriteup": true,
+    "palette": "paper",
+    "year": "2025",
+    "references": [
+      {
+        "citation": "FERC Form 1 data accessed via PUDL Project (Catalyst Cooperative).",
+        "url": "https://catalystcoop-pudl.readthedocs.io/"
+      },
+      {
+        "citation": "EIA Form 861 Annual Electric Power Industry Report, U.S. Energy Information Administration.",
+        "url": "https://www.eia.gov/electricity/data/eia861/"
+      },
+      {
+        "citation": "CPUC General Rate Case process overview.",
+        "url": "https://www.cpuc.ca.gov"
+      },
+      {
+        "citation": "FERC Uniform System of Accounts for Public Utilities (18 C.F.R. Part 101).",
+        "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-C/part-101"
+      }
+    ]
+  },
+  {
     "id": "neon-econometrics",
     "slug": "neon-econometrics",
     "title": "Neon Econometrics Showcase",
@@ -56,19 +87,6 @@
     "featured": false,
     "hasWriteup": false,
     "draft": true
-  },
-  {
-    "id": "ca-utilities-rate-case",
-    "slug": "ca-utilities-rate-case",
-    "title": "California Utilities Rate Case Replication",
-    "category": "Regulatory",
-    "description": "Reconstructed CPUC's authorized revenue requirement within 3% across PG&E, SCE, and SDG&E using public FERC and EIA filings.",
-    "techStack": ["Python", "pandas", "statsmodels", "FERC Form 1", "EIA-861"],
-    "image": "/images/projects/ca-utilities-rate-case/revenue-requirement-vs-cpuc.png",
-    "featured": true,
-    "hasWriteup": true,
-    "palette": "paper",
-    "year": "2025"
   },
   {
     "id": "ai-content-workflow",

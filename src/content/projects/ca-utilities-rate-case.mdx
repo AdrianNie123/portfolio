@@ -7,33 +7,33 @@ import Chart from '@/components/project/Chart.astro';
 import Caveats from '@/components/project/Caveats.astro';
 
 <PullQuote>
-California's three investor-owned utilities propose multi-billion dollar rate increases through opaque cost-of-service models that few outside the CPUC can audit independently. Using only public FERC and EIA filings, I reconstructed the authorized revenue requirement for PG&E, SCE, and SDG&E across 2018–2023 and landed within 3% of the CPUC's final decisions — and identified that 75% of PG&E's $1.40 billion O&M increase from 2020 to 2023 was explained by rate base expansion alone.
+A California General Rate Case determines how much a utility is authorized to collect from customers — a proceeding that can take two years and move billions of dollars. Using only public FERC Form 1 and EIA-861 data, I reconstructed the Phase 1 baseline analysis that CPUC staff conduct before engaging with confidential utility workpapers, identifying PG&E's GRC-recoverable O&M at $4,099 per customer — 46% above the $2,811 California IOU peer average, growing at 8× the rate of SCE and SDG&E on a post-bankruptcy baseline.
 </PullQuote>
 
 <MethodList>
 
-- Built a parameterized revenue requirement model from CPUC Standard Practice U-27-W: rate base × authorized return + depreciation + O&M + taxes. Calibrated WACC at 7.5%, depreciation rate at 3.5%, and O&M escalation at 3% annually, with each parameter editable to test sensitivity to commission-authorized values.
-- Assembled an 18 utility-year panel (3 utilities × 6 years) from FERC Form 1 financial schedules and EIA-861 sales and customer data. Reconciled FERC's regulated-accounting view against EIA's operational view, with named handling for known mismatches (e.g., PG&E's 2019 bankruptcy filing distortions).
-- Ran an OLS cost-driver regression of O&M expense on rate base, customer count, energy delivered, and a post-2020 dummy. Achieved R² = 0.93. Used the post-2020 coefficient to isolate the structural shift in PG&E's cost trajectory after wildfire mitigation requirements took effect.
-- Validated the model against the CPUC's authorized 2023 PG&E revenue requirement (Decision 23-11-069) and landed within 3% — a benchmark documented step-by-step so the result is reproducible by anyone with the underlying filings.
+- Built an 18 utility-year panel (3 utilities × 6 years) from FERC Form 1 financial schedules and EIA-861 customer and sales data. Categorized O&M into five FERC account buckets and isolated GRC-comparable O&M — Distribution + Customer Service + A&G×70% — per standard CPUC practice that excludes production (ERRA) and transmission (FERC-jurisdictional) costs from the GRC scope.
+- Modeled revenue requirement using the standard regulatory formula: rate base × authorized return + depreciation + O&M + taxes. Calibrated WACC at 7.5%, depreciation at 3.5%, and tax rate at 27%, with each parameter editable to test sensitivity to commission-authorized values. Documented assumptions step-by-step so the model is reproducible from the underlying filings.
+- Ran OLS cost-driver regression of O&M on rate base, customer count, MWh sales, and a post-bankruptcy dummy for PG&E. R² improved from 0.658 to 0.925 after excluding PG&E's 2019–2020 outlier years. Rate base emerged as the dominant driver — every $1B increase in rate base is associated with ~$0.33B in O&M — consistent with California utilities' capital-intensive wildfire mitigation and grid hardening programs.
+- Projected residential bill impacts using EIA-861 revenue class shares as a cost allocation proxy. Average monthly bill computed from a 500 kWh/month residential baseline, 3% O&M escalation, and 4% rate base growth — the same forward-looking parameters a staff analyst would apply before reviewing utility-filed forecasts.
 
 </MethodList>
 
 <Chart
-  src="/images/projects/ca-utilities-rate-case/revenue-requirement-vs-cpuc.png"
-  caption="Modeled revenue requirement (solid) against CPUC authorized values (dashed) for PG&E 2018–2023. Largest gap is 2019, the bankruptcy year — flagged in the writeup, not papered over."
+  src="/images/projects/ca-utilities-rate-case/om_trend.png"
+  caption="O&M expense trend across California's three IOUs, 2018–2023. PG&E's −40% YoY drop in 2020 coincides with its bankruptcy filing — an identified outlier excluded from regression but retained in trend visualizations."
 />
 
 <Chart
-  src="/images/projects/ca-utilities-rate-case/om-cost-decomposition.png"
-  caption="Decomposition of PG&E's $1.40 billion O&M increase, 2020–2023. Rate base expansion explains 75% of the change; the remaining 25% is structural and warrants further investigation — not a finding to bury."
+  src="/images/projects/ca-utilities-rate-case/rr_waterfall_pge.png"
+  caption="PG&E's GRC-comparable revenue requirement (2023): $13.9B total, built from $3.3B distribution O&M, $1.1B customer service, $2.5B A&G (70%), $1.7B depreciation, $3.6B return on rate base, and $1.8B taxes. Excludes production (ERRA) and transmission (FERC-jurisdictional) per GRC scope."
 />
 
 <Chart
-  src="/images/projects/ca-utilities-rate-case/cross-utility-roa.png"
-  caption="Authorized return on rate base across the three utilities, 2018–2023. SDG&E's smaller customer base produces higher per-customer revenue requirements even at lower absolute rate base — a distributional fact the headline numbers hide."
+  src="/images/projects/ca-utilities-rate-case/bill_impact.png"
+  caption="Projected residential monthly bill under 3% O&M escalation and 4% rate base growth. PG&E: $170 → $176 (+3.3%); SCE: $162 → $167 (+3.3%); SDG&E: $227 → $235 (+3.4%). SDG&E's already-high baseline reflects its smaller customer base relative to rate base."
 />
 
 <Caveats>
-The model handles the financial side of a rate case cleanly, but it does not estimate the income-distributional impact of the resulting rates on customers — which is the question that actually matters for affordability proceedings. The CPUC runs distributional analysis on a separate track from rate-setting, and bridging the two would require LEAD Tool data and ZIP-code-level consumption that aren't in FERC or EIA filings. That gap is the subject of a separate policy brief; it's not something a replication exercise can resolve. The 3% error against the 2023 authorized decision is one validation point, not a guarantee of generalization.
+The model handles the financial side of a rate case cleanly, but it cannot estimate the income-distributional impact of the resulting rates — which is the question that actually matters for affordability proceedings. Bridging that gap requires LEAD Tool data and ZIP-code-level consumption not available in FERC or EIA filings. The 26–33% revenue gaps across utilities reflect total utility revenue requirement (including ERRA and FERC-jurisdictional costs) compared against total electric operating revenues; this is expected and methodologically consistent, not an error. Depreciation, WACC, and tax rate are approximated; actual authorized values vary by proceeding and a filed GRC uses utility-specific figures from a cost-of-capital decision.
 </Caveats>
