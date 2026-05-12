@@ -88,16 +88,4 @@
     "hasWriteup": false,
     "draft": true
   },
-  {
-    "id": "ai-content-workflow",
-    "slug": "ai-content-workflow",
-    "title": "AI Content Workflow Tools",
-    "category": "ML",
-    "description": "Automated pipelines for faceless content creation — from prompt engineering to cinematic poetry video generation.",
-    "techStack": ["Python", "OpenAI API", "FFmpeg", "Telegram Bot"],
-    "image": "/images/projects/ai-content.jpg",
-    "link": "https://github.com/yourusername/ai-content-workflow",
-    "featured": false,
-    "hasWriteup": false
-  }
 ]

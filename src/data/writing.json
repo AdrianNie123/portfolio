@@ -28,44 +28,4 @@
     "hasFullPage": false,
     "body": "We build monuments to the moments we were understood,\nstacking stone upon stone until the tower leans\ninto the clouds, asking the sky to remember\nwhat the ground has already forgiven.\n\nTo be known is to be held —\nbut the hands that hold us\nare made of the same dust\nthat swirls through open windows\non late afternoons."
   },
-  {
-    "id": "urban-jungle",
-    "slug": "urban-jungle",
-    "title": "Urban Jungle",
-    "type": "Prose",
-    "date": "2026-04-05",
-    "excerpt": "The city breathes in diesel and exhales neon. I walk through it like a field biologist, cataloging the graffiti tags like species markers.",
-    "hasFullPage": false,
-    "body": "The city breathes in diesel and exhales neon. I walk through it like a field biologist, cataloging the graffiti tags like species markers, watching the pigeons adapt to the architecture the way finches adapted to Galapagos islands. Every alley is an ecosystem. Every streetlight, a star."
-  },
-  {
-    "id": "cinematic-detachment",
-    "slug": "cinematic-detachment",
-    "title": "Cinematic Detachment",
-    "type": "Essay",
-    "date": "2026-03-15",
-    "excerpt": "On making art that does not look like you.",
-    "hasFullPage": true,
-    "readingTime": 3
-  },
-  {
-    "id": "after-rumi",
-    "slug": "after-rumi",
-    "title": "After Rumi",
-    "type": "Poetry",
-    "date": "2026-03-08",
-    "excerpt": "You come from a place with a name I cannot pronounce, / carrying a god whose face changes with the weather.",
-    "hasFullPage": false,
-    "body": "You come from a place with a name I cannot pronounce,\ncarrying a god whose face changes with the weather.\nI come from a place where the buildings outnumber the trees,\ncarrying questions like stones in my pockets.\n\nYet when we strip it away —\nthe accent, the address, the allegiance —\nwe are both just meat and longing,\ntrying to remember the melody\nof a song we heard before we were born."
-  },
-  {
-    "id": "on-forgetting",
-    "slug": "on-forgetting",
-    "title": "On Forgetting",
-    "type": "Prose",
-    "date": "2026-03-02",
-    "excerpt": "Memory is not storage. It is reconstruction — a daily act of forgetting what doesn't fit.",
-    "hasFullPage": false,
-    "body": "Memory is not storage. It is reconstruction — a daily act of forgetting what doesn't fit.\n\nI used to think forgetting was loss. Now I think it's the mind's way of editing toward coherence. Every time you remember something, you remake it slightly. The memory you return to is never the same as the one you left."
-  }
 ]
