@@ -1,31 +1,32 @@
 [
   {
-    "id": "residuals",
-    "slug": "residuals",
-    "title": "Residuals",
+    "id": "trailhead",
+    "slug": "trailhead",
+    "title": "Trailhead",
     "type": "Poetry",
-    "date": "2026-02-14",
-    "excerpt": "There is a name for what remains after the model has done its work — the gap where the world declined to cooperate.",
-    "hasFullPage": true
+    "date": "2026-05-10",
+    "excerpt": "I used to think love was arrival, / a porch light, a hand already waiting.",
+    "hasFullPage": false,
+    "body": "I used to think love was arrival,\na porch light, a hand already waiting.\n\nNow I think it is walking beside someone\nwhile the pines keep their own counsel,\nwhile the trail narrows, widens, disappears.\n\nYou step ahead.\nI fall back.\nThen we trade places without naming it.\n\nSomewhere in that quiet adjustment,\nI learn compatibility is not sameness,\nbut rhythm.\n\nNot two hearts beating as one,\nbut two people listening\nhard enough\nto keep walking."
   },
   {
-    "id": "peripheral",
-    "slug": "peripheral",
-    "title": "Peripheral",
+    "id": "son-without-a-map",
+    "slug": "son-without-a-map",
+    "title": "Son Without a Map",
     "type": "Poetry",
-    "date": "2026-04-28",
-    "excerpt": "At the edge of things, something / always moves.",
+    "date": "2026-05-08",
+    "excerpt": "No one taught me how to be a man.",
     "hasFullPage": false,
-    "body": "At the edge of things, something\nalways moves.\n\nThe peripheral is where\nthe mind goes wild —\ncat-quick, half-seen,\ngone."
+    "body": "No one taught me how to be a man.\n\nSo I studied rivers,\nhow they bend without apology,\nhow they carry what they can\nand leave the rest to stone.\n\nI studied my mother's tired hands,\nthe way silence can become shelter\nor a room with no door.\n\nI studied love\nand found it was not conquest,\nnot certainty,\nnot the loudest voice at the table.\n\nMaybe manhood is smaller than that.\n\nMaybe it is learning\nto stay gentle\nwithout becoming absent."
   },
   {
-    "id": "weight-of-recognition",
-    "slug": "weight-of-recognition",
-    "title": "The Weight of Recognition",
+    "id": "field-notes-on-love",
+    "slug": "field-notes-on-love",
+    "title": "Field Notes on Love",
     "type": "Poetry",
-    "date": "2026-04-18",
-    "excerpt": "We build monuments to the moments we were understood, / stacking stone upon stone until the tower leans",
+    "date": "2026-05-06",
+    "excerpt": "Love is not the mountain. / It is the person who stops with you halfway up.",
     "hasFullPage": false,
-    "body": "We build monuments to the moments we were understood,\nstacking stone upon stone until the tower leans\ninto the clouds, asking the sky to remember\nwhat the ground has already forgiven.\n\nTo be known is to be held —\nbut the hands that hold us\nare made of the same dust\nthat swirls through open windows\non late afternoons."
+    "body": "Love is not the mountain.\n\nIt is the person\nwho stops with you halfway up\nto watch fog lift from the valley.\n\nIt is someone asking,\ndid you eat?\nand meaning,\nare you still here with me?"
   }
 ]
