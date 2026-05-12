@@ -63,6 +63,37 @@
     ]
   },
   {
+    "id": "ca-solar-grid",
+    "slug": "ca-solar-grid",
+    "title": "California Solar Adoption & Grid Evolution",
+    "category": "Energy",
+    "description": "Traced how 1.8M+ residential solar installations reshaped California's duck curve and drove net-load ramp magnitude up ~600 MW/hour between 2015 and 2023, using CEC DGStats and CAISO OASIS hourly signals.",
+    "techStack": ["Python", "pandas", "geopandas", "matplotlib", "CAISO OASIS", "CEC DGStats"],
+    "image": "/images/projects/ca-solar-grid/duck_curve_hourly_profiles.png",
+    "featured": true,
+    "hasWriteup": true,
+    "palette": "deep-navy",
+    "year": "2025",
+    "references": [
+      {
+        "citation": "California Energy Commission. Distributed Generation Statistics (DGStats).",
+        "url": "https://www.energy.ca.gov/files/dg-stats"
+      },
+      {
+        "citation": "California ISO. OASIS (Open Access Same-time Information System) hourly demand and generation data.",
+        "url": "https://oasis.caiso.com"
+      },
+      {
+        "citation": "U.S. Census Bureau. TIGER/Line Shapefiles — ZIP Code Tabulation Areas.",
+        "url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html"
+      },
+      {
+        "citation": "CPUC. Net Energy Metering (NEM 2.0) and Net Billing Tariff (NBT) policy transition.",
+        "url": "https://www.cpuc.ca.gov/nem"
+      }
+    ]
+  },
+  {
     "id": "neon-econometrics",
     "slug": "neon-econometrics",
     "title": "Neon Econometrics Showcase",

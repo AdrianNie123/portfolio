@@ -1,0 +1,39 @@
+---
+---
+
+import PullQuote from '@/components/project/PullQuote.astro';
+import MethodList from '@/components/project/MethodList.astro';
+import Chart from '@/components/project/Chart.astro';
+import Caveats from '@/components/project/Caveats.astro';
+
+<PullQuote>
+California added 1.8M+ residential solar installations between 2015 and 2023 — and the grid felt every one of them. Using CEC DGStats and CAISO OASIS hourly signals, I traced how distributed solar reshaped the duck curve from a forecast concern into an operational reality, and documented the net-load ramp magnitude growing from ~1,000 MW/hour in 2015 to a plateau near 1,600 MW/hour by 2022.
+</PullQuote>
+
+<MethodList>
+
+- Built a modular pipeline across nine notebooks: ingestion, QC, cleaning, feature engineering, panel assembly, EDA, time-series profiling, and final figure packaging. Panel combines ZIP-level solar adoption from CEC DGStats with system-level CAISO OASIS hourly demand and generation, joined via Census TIGER/Line boundary geometry.
+- Constructed cohort and time-series profiles to track duck curve evolution across three anchor years (2015, 2018, 2022). Decomposed CAISO net load into gross demand, solar, and wind contributions to isolate the solar signature on midday load suppression and evening ramp steepness.
+- Computed net-load ramp magnitude as mean hourly MW/hour change at the CAISO system level, with a 12-month rolling mean to separate structural trend from seasonal volatility. Documented the sustained upward shift in ramp requirements coinciding with NEM 2.0 adoption acceleration.
+- Applied Moran's I to ZIP-level cumulative BTM capacity to test whether spatial clustering in adoption aligned with local grid stress signals — a diagnostic check on whether the geographic adoption pattern is random or concentrated in ways that compound operational exposure.
+
+</MethodList>
+
+<Chart
+  src="/images/projects/ca-solar-grid/duck_curve_hourly_profiles.png"
+  caption="CAISO average daily load profiles for 2015, 2018, and 2022. Solar's midday suppression of net load deepens across years while the evening ramp steepens — the duck curve transition from projection to operational constraint."
+/>
+
+<Chart
+  src="/images/projects/ca-solar-grid/adoption_density_heatmap.png"
+  caption="Cumulative BTM capacity by ZIP (kW-DC), 2015–2023. Adoption clusters along coastal IOU territories early, then diffuses inland. The 2022–2023 panels capture acceleration ahead of the NEM 2.0 to NBT policy transition."
+/>
+
+<Chart
+  src="/images/projects/ca-solar-grid/grid_stress_ramp_magnitude.png"
+  caption="Net-load ramp magnitude (monthly mean hourly change, MW/hour), 2015–2023. The 12-month rolling mean documents a structural increase of ~600 MW/hour over the period — a direct operational consequence of distributed solar displacing midday thermal generation."
+/>
+
+<Caveats>
+This analysis is descriptive, not causal. The correlation between adoption growth and ramp magnitude increase is consistent with a solar-driven mechanism, but CAISO's net-load signal conflates solar with wind, demand-side response, and storage dispatch in ways that ZIP-level DGStats data cannot fully decompose. Spatial clustering (Moran's I) establishes that adoption is non-random geographically, but the analysis does not estimate localized grid impact at the distribution level — that would require utility SCADA or feeder-level data not available in public filings. NEM 2.0 to NBT policy effects are marked as inflection context, not estimated treatment effects.
+</Caveats>
