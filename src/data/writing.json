@@ -1,5 +1,15 @@
 [
   {
+    "id": "softer",
+    "slug": "softer",
+    "title": "Softer",
+    "type": "Poetry",
+    "date": "2026-05-12",
+    "excerpt": "You hold my softness like something to overcome.",
+    "hasFullPage": false,
+    "body": "You hold my softness like something to overcome.\nI am asking, in the only language love has ever given me:\nbe a little less sword, a little more hand."
+  },
+  {
     "id": "trailhead",
     "slug": "trailhead",
     "title": "Trailhead",
